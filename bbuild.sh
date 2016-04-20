@@ -10,10 +10,10 @@
 # Parameters to be configured manually
 #######################################
 
-BOEFFLA_VERSION="2.7-CM11.0-i9300"
+BOEFFLA_VERSION="2.14.1-CM11.0-i9300"
 EXTENDED_CMDLINE=""
 
-TOOLCHAIN="/opt/toolchains/arm-eabi-4.7/bin/arm-eabi-"
+TOOLCHAIN="/opt/toolchains/gcc-linaro-5.3-2016.02-x86_64_arm-eabi/bin/arm-eabi-"
 
 COMPILE_DTB="n"
 MODULES_IN_SYSTEM="y"
@@ -87,7 +87,7 @@ if [ -f $ROOT_PATH/x-settings.sh ]; then
   . $ROOT_PATH/x-settings.sh
 fi
 
-BOEFFLA_FILENAME="boeffla-kernel-$BOEFFLA_VERSION"
+BOEFFLA_FILENAME="elite-boeffla-kernel-$BOEFFLA_VERSION"
 
 if [ "y" == "$MODULES_IN_SYSTEM" ]; then
 	MODULE_PATH="system/lib/modules"
@@ -113,8 +113,8 @@ step0_copy_code()
 	cp -r $SOURCE_PATH/* $BUILD_PATH
 
 	# Replace version information in mkcompile_h with the one from x-settings.sh
-	sed "s/\`echo \$LINUX_COMPILE_BY | \$UTS_TRUNCATE\`/Boeffla-Kernel-$BOEFFLA_VERSION-$BOEFFLA_DATE/g" -i $BUILD_PATH/scripts/mkcompile_h
-	sed "s/\`echo \$LINUX_COMPILE_HOST | \$UTS_TRUNCATE\`/andip71/g" -i $BUILD_PATH/scripts/mkcompile_h
+	sed "s/\`echo \$LINUX_COMPILE_BY | \$UTS_TRUNCATE\`/Elite-Boeffla-Kernel-$BOEFFLA_VERSION-$BOEFFLA_DATE/g" -i $BUILD_PATH/scripts/mkcompile_h
+	sed "s/\`echo \$LINUX_COMPILE_HOST | \$UTS_TRUNCATE\`/Oebbler/g" -i $BUILD_PATH/scripts/mkcompile_h
 }
 
 step1_make_clean()
@@ -358,7 +358,7 @@ step6_repack_ramdisk()
 		echo "abort(\"This package is for device: $ASSERT_1 $ASSERT_2 $ASSERT_3 $ASSERT_4 $ASSERT_5 $ASSERT_6; this device is \" + getprop(\"ro.product.device\") + \".\"););" >> META-INF/com/google/android/updater-script
 	fi
 	
-	echo "ui_print(\"Flashing Boeffla-Kernel $BOEFFLA_VERSION\");" >> META-INF/com/google/android/updater-script
+	echo "ui_print(\"Flashing Elite-Boeffla-Kernel $BOEFFLA_VERSION\");" >> META-INF/com/google/android/updater-script
 	echo "package_extract_file(\"boot.img\", \"$BOOT_PARTITION\");" >> META-INF/com/google/android/updater-script
 	
 	if [ ! "y" == "$KERNEL_SAMSUNG" ]; then
@@ -369,7 +369,7 @@ step6_repack_ramdisk()
 	fi
 	
 	echo "ui_print(\" \");" >> META-INF/com/google/android/updater-script
-	echo "ui_print(\"(c) Lord Boeffla (aka andip71), $(date +%Y.%m.%d-%H:%M:%S)\");" >> META-INF/com/google/android/updater-script
+	echo "ui_print(\"(c) Oebbler and Lord Boeffla, $(date +%Y.%m.%d-%H:%M:%S)\");" >> META-INF/com/google/android/updater-script
 	echo "ui_print(\" \");" >> META-INF/com/google/android/updater-script
 	echo "ui_print(\"Finished, please reboot.\");" >> META-INF/com/google/android/updater-script
 
@@ -471,7 +471,7 @@ step9_send_finished_mail()
 	if [ -z "$FINISH_MAIL_TO" ]; then
 		echo -e "No mail address configured, not sending mail.\n"	
 	else
-		cat $ROOT_PATH/compile.log | /usr/bin/mailx -s "Compilation for Boeffla-Kernel $BOEFFLA_VERSION finished!!!" $FINISH_MAIL_TO
+		cat $ROOT_PATH/compile.log | /usr/bin/mailx -s "Compilation for Elite-Boeffla-Kernel $BOEFFLA_VERSION finished!!!" $FINISH_MAIL_TO
 	fi
 }	
 
