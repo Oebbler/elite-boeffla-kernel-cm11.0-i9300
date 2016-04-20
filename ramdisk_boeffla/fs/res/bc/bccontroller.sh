@@ -50,7 +50,7 @@ if [ "lov_gpu_freq_profiles" == "$1" ]; then
 fi
 
 if [ "lov_gpu_volt_profiles" == "$1" ]; then
-	echo "No undervolting;undervolt -25mV;undervolt -50mV;undervolt -75mV;undervolt -100mV;undervolt light;undervolt medium;undervolt heavy;overvolt +25mV;overvolt +50mV;overvolt +75mV;overvolt +100mV"
+	echo "No undervolting;undervolt -25mV;undervolt -50mV;undervolt -75mV;undervolt -100mV;undervolt -125mV;undervolt -150mV;undervolt -175mV;undervolt -200mV;undervolt light;undervolt medium;undervolt heavy;overvolt +25mV;overvolt +50mV;overvolt +75mV;overvolt +100mV"
 	exit 0
 fi
 
@@ -205,6 +205,18 @@ if [ "conf_gpu_volt" == "$1" ]; then
 	if [ "undervolt -100mV" == "$2" ]; then
 		echo "-100000;-100000;-100000;-100000;-100000"
 	fi
+	if [ "undervolt -125mV" == "$2" ]; then
+		echo "-125000;-125000;-125000;-125000;-125000"
+	fi
+	if [ "undervolt -150mV" == "$2" ]; then
+		echo "-150000;-150000;-150000;-150000;-150000"
+	fi
+	if [ "undervolt -175mV" == "$2" ]; then
+		echo "-175000;-175000;-175000;-175000;-175000"
+	fi
+	if [ "undervolt -200mV" == "$2" ]; then
+		echo "-200000;-200000;-200000;-200000;-200000"
+	fi
 	if [ "undervolt light" == "$2" ]; then
 		echo "-25000;-25000;-25000;-50000;-50000"
 	fi
@@ -231,28 +243,28 @@ fi
 
 if [ "conf_cpu_volt" == "$1" ]; then
 	if [ "No undervolting" == "$2" ]; then
-		echo "0;0;0;0;0;0;0;0;0;0;0;0;0;0;0"
+		echo "0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0"
 	fi
 	if [ "undervolt -25mV" == "$2" ]; then
-		echo "-25;-25;-25;-25;-25;-25;-25;-25;-25;-25;-25;-25;-25;-25;-25"
+		echo "-25;-25;-25;-25;-25;-25;-25;-25;-25;-25;-25;-25;-25;-25;-25;-25;-25;-25;-25;-25"
 	fi
 	if [ "undervolt -50mV" == "$2" ]; then
-		echo "-50;-50;-50;-50;-50;-50;-50;-50;-50;-50;-50;-50;-50;-50;-50"
+		echo "-50;-50;-50;-50;-50;-50;-50;-50;-50;-50;-50;-50;-50;-50;-50;-50;-50;-50;-50;-50"
 	fi
 	if [ "undervolt -75mV" == "$2" ]; then
-		echo "-75;-75;-75;-75;-75;-75;-75;-75;-75;-75;-75;-75;-75;-75;-75"
+		echo "-75;-75;-75;-75;-75;-75;-75;-75;-75;-75;-75;-75;-75;-75;-75;-75;-75;-75;-75;-75"
 	fi
 	if [ "undervolt -100mV" == "$2" ]; then
-		echo "-100;-100;-100;-100;-100;-100;-100;-100;-100;-100;-100;-100;-100;-100;-100"
+		echo "-100;-100;-100;-100;-100;-100;-100;-100;-100;-100;-100;-100;-100;-100;-100;-100;-100;-100;-100;-100"
 	fi
 	if [ "undervolt light" == "$2" ]; then
-		echo "0;0;0;0;0;0;-25;-25;-25;-25;-25;-50;-50;-50;-50"
+		echo "0;0;0;0;0;0;-25;-25;-25;-25;-25;-50;-50;-50;-50;-50;-50;-50;-50;-50"
 	fi
 	if [ "undervolt medium" == "$2" ]; then
-		echo "-25;-25;-25;-25;-25;-25;-50;-50;-50;-50;-50;-75;-75;-75;-75"
+		echo "-25;-25;-25;-25;-25;-25;-50;-50;-50;-50;-50;-75;-75;-75;-75;-75;-75;-75;-75;-75"
 	fi
 	if [ "undervolt heavy" == "$2" ]; then
-		echo "-50;-50;-50;-50;-50;-50;-75;-75;-75;-75;-75;-100;-100;-100;-100"
+		echo "-50;-50;-50;-50;-50;-50;-75;-75;-75;-75;-75;-100;-100;-100;-100;-100;-100;-100;-100;-100"
 	fi
 	exit 0
 fi
@@ -323,7 +335,7 @@ fi
 
 if [ "param_cpu_uv" == "$1" ]; then
 	# CPU UV min/max/steps
-	echo "600;1500;25"
+	echo "600;1600;25"
 	exit 0
 fi
 
@@ -363,11 +375,11 @@ fi
 
 if [ "param_charge_rates" == "$1" ]; then
 	# AC charge min/max/steps
-	echo "100;1600;25;"
+	echo "25;2100;25;"
 	# USB charge min/max/steps
-	echo "0;1600;25;"
+	echo "25;2100;25;"
 	# Wireless charge min/max/steps
-	echo "100;1000;25"
+	echo "25;2100;25"
 	exit 0
 fi
 
